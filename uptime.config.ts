@@ -12,7 +12,8 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    'Public Websites': ['personal-site'],
+    'Public Websites': ['personal-site', 'resumly-frontend'],
+    'Backend APIs': ['resumly-backend'],
   },
 }
 
@@ -36,13 +37,53 @@ const workerConfig: WorkerConfig = {
       // [OPTIONAL] `statusPageLink` is ONLY used for clickable link at status page
       statusPageLink: 'https://ethanglenn.dev',
       // [OPTIONAL] `hideLatencyChart` will hide status page latency chart if set to true
-      hideLatencyChart: false,
+      hideLatencyChart: true,
       // [OPTIONAL] `expectedCodes` is an array of acceptable HTTP response codes, if not specified, default to 2xx
       expectedCodes: [200],
       // [OPTIONAL] `timeout` in millisecond, if not specified, default to 10000
       timeout: 10000,
       // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
       responseKeyword: 'Online!',
+    },
+    {
+      // `id` should be unique, history will be kept if the `id` remains constant
+      id: 'resumly-frontend',
+      // `name` is used at status page and callback message
+      name: 'Resumly.pro',
+      // `method` should be a valid HTTP Method
+      method: 'GET',
+      // `target` is a valid URL
+      target: 'https://resumly.pro/online',
+      // [OPTIONAL] `statusPageLink` is ONLY used for clickable link at status page
+      statusPageLink: 'https://resumly.pro',
+      // [OPTIONAL] `hideLatencyChart` will hide status page latency chart if set to true
+      hideLatencyChart: true,
+      // [OPTIONAL] `expectedCodes` is an array of acceptable HTTP response codes, if not specified, default to 2xx
+      expectedCodes: [200],
+      // [OPTIONAL] `timeout` in millisecond, if not specified, default to 10000
+      timeout: 10000,
+      // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
+      responseKeyword: 'Online!',
+    },
+    {
+      // `id` should be unique, history will be kept if the `id` remains constant
+      id: 'resumly-backend',
+      // `name` is used at status page and callback message
+      name: 'Resumly.pro API',
+      // `method` should be a valid HTTP Method
+      method: 'GET',
+      // `target` is a valid URL
+      target: 'https://api.resumly.pro/online',
+      // [OPTIONAL] `statusPageLink` is ONLY used for clickable link at status page
+      statusPageLink: 'https://api.resumly.pro',
+      // [OPTIONAL] `hideLatencyChart` will hide status page latency chart if set to true
+      hideLatencyChart: true,
+      // [OPTIONAL] `expectedCodes` is an array of acceptable HTTP response codes, if not specified, default to 2xx
+      expectedCodes: [200],
+      // [OPTIONAL] `timeout` in millisecond, if not specified, default to 10000
+      timeout: 10000,
+      // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
+      responseKeyword: 'online',
     },
   ],
   notification: {},
