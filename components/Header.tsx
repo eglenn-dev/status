@@ -22,7 +22,23 @@ export default function Header() {
     <header className={classes.header}>
       <Container size="md" className={classes.inner}>
         <div>
-          <a href="https://ethanglenn.dev">Ethan Glenn Development</a>
+          <a
+            href="https://ethanglenn.dev"
+            style={{
+              textDecoration: 'none',
+              color: 'white',
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/favicon.ico"
+              alt="Ethan Glenn Logo"
+              style={{ width: '24px', height: '24px', marginRight: '8px' }}
+            />
+            Ethan Glenn Development
+          </a>
         </div>
 
         <Group gap={5} visibleFrom="sm">

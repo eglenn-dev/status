@@ -2,7 +2,7 @@ import { MaintenanceConfig, PageConfig, WorkerConfig } from './types/config'
 
 const pageConfig: PageConfig = {
   // Title for your status page
-  title: "Ethan Glenn's Status Page",
+  title: 'Status | Ethan Glenn',
   // Links shown at the header of your status page, could set `highlight` to `true`
   links: [
     { link: 'https://github.com/eglenn-dev', label: 'GitHub' },
@@ -33,8 +33,6 @@ const workerConfig: WorkerConfig = {
       method: 'GET',
       // `target` is a valid URL
       target: 'https://ethanglenn.dev',
-      // [OPTIONAL] `tooltip` is ONLY used at status page to show a tooltip
-      tooltip: 'This is a tooltip for this monitor',
       // [OPTIONAL] `statusPageLink` is ONLY used for clickable link at status page
       statusPageLink: 'https://ethanglenn.dev',
       // [OPTIONAL] `hideLatencyChart` will hide status page latency chart if set to true
@@ -45,8 +43,6 @@ const workerConfig: WorkerConfig = {
       timeout: 10000,
       // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
       responseKeyword: 'Software Engineer',
-      // [OPTIONAL] if specified, the response must NOT contains the keyword to be considered as operational.
-      responseForbiddenKeyword: 'error',
     },
   ],
   notification: {},
