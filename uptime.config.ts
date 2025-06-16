@@ -42,7 +42,7 @@ const workerConfig: WorkerConfig = {
       // [OPTIONAL] `timeout` in millisecond, if not specified, default to 10000
       timeout: 10000,
       // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
-      responseKeyword: 'Software Engineer',
+      responseKeyword: 'Online!',
     },
   ],
   notification: {},
