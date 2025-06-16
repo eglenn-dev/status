@@ -12,7 +12,7 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    '🌐 Public': ['personal-site'],
+    'Public Websites': ['personal-site'],
   },
 }
 
@@ -46,7 +46,7 @@ const workerConfig: WorkerConfig = {
       // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
       responseKeyword: 'Software Engineer',
       // [OPTIONAL] if specified, the response must NOT contains the keyword to be considered as operational.
-      responseForbiddenKeyword: 'bad gateway',
+      responseForbiddenKeyword: 'error',
     },
   ],
   notification: {},
