@@ -12,8 +12,8 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    'Public Websites': ['personal-site', 'resumly-frontend'],
-    'Backend APIs': ['resumly-backend'],
+    '🌐 Public Websites': ['personal-site', 'resumly-frontend', 'marknote-one', 'clipit-one'],
+    '⚙️ Backend APIs': ['resumly-backend'],
   },
 }
 
