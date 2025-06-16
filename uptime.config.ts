@@ -32,7 +32,7 @@ const workerConfig: WorkerConfig = {
       // `method` should be a valid HTTP Method
       method: 'GET',
       // `target` is a valid URL
-      target: 'https://ethanglenn.dev',
+      target: 'https://ethanglenn.dev/online',
       // [OPTIONAL] `statusPageLink` is ONLY used for clickable link at status page
       statusPageLink: 'https://ethanglenn.dev',
       // [OPTIONAL] `hideLatencyChart` will hide status page latency chart if set to true
