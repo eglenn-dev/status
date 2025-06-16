@@ -29,6 +29,9 @@ export default function Header() {
               color: 'white',
               fontSize: '1.5rem',
               fontWeight: 'bold',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -37,7 +40,7 @@ export default function Header() {
               alt="Ethan Glenn Logo"
               style={{ width: '24px', height: '24px', marginRight: '8px' }}
             />
-            Ethan Glenn Development
+            Ethan Glenn
           </a>
         </div>
 
