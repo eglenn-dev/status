@@ -5,8 +5,8 @@ const pageConfig: PageConfig = {
   title: 'Status | Ethan Glenn',
   // Links shown at the header of your status page, could set `highlight` to `true`
   links: [
+    { link: 'https://ethanglenn.dev', label: 'Home' },
     { link: 'https://github.com/eglenn-dev', label: 'GitHub' },
-    { link: 'https://ethanglenn.dev/blog', label: 'Blog' },
   ],
   // [OPTIONAL] Group your monitors
   // If not specified, all monitors will be shown in a single list
@@ -46,83 +46,47 @@ const workerConfig: WorkerConfig = {
       responseKeyword: 'Online!',
     },
     {
-      // `id` should be unique, history will be kept if the `id` remains constant
       id: 'resumly-frontend',
-      // `name` is used at status page and callback message
       name: 'Resumly.pro',
-      // `method` should be a valid HTTP Method
       method: 'GET',
-      // `target` is a valid URL
       target: 'https://resumly.pro/online',
-      // [OPTIONAL] `statusPageLink` is ONLY used for clickable link at status page
       statusPageLink: 'https://resumly.pro',
-      // [OPTIONAL] `hideLatencyChart` will hide status page latency chart if set to true
       hideLatencyChart: true,
-      // [OPTIONAL] `expectedCodes` is an array of acceptable HTTP response codes, if not specified, default to 2xx
       expectedCodes: [200],
-      // [OPTIONAL] `timeout` in millisecond, if not specified, default to 10000
       timeout: 10000,
-      // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
       responseKeyword: 'Online!',
     },
     {
-      // `id` should be unique, history will be kept if the `id` remains constant
       id: 'resumly-backend',
-      // `name` is used at status page and callback message
       name: 'Resumly.pro API',
-      // `method` should be a valid HTTP Method
       method: 'GET',
-      // `target` is a valid URL
       target: 'https://api.resumly.pro/online',
-      // [OPTIONAL] `statusPageLink` is ONLY used for clickable link at status page
       statusPageLink: 'https://api.resumly.pro',
-      // [OPTIONAL] `hideLatencyChart` will hide status page latency chart if set to true
       hideLatencyChart: true,
-      // [OPTIONAL] `expectedCodes` is an array of acceptable HTTP response codes, if not specified, default to 2xx
       expectedCodes: [200],
-      // [OPTIONAL] `timeout` in millisecond, if not specified, default to 10000
       timeout: 10000,
-      // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
       responseKeyword: 'online',
     },
     {
-      // `id` should be unique, history will be kept if the `id` remains constant
       id: 'marknote-one',
-      // `name` is used at status page and callback message
       name: 'MarkNote.one',
-      // `method` should be a valid HTTP Method
       method: 'GET',
-      // `target` is a valid URL
       target: 'https://marknote.one/api/online',
-      // [OPTIONAL] `statusPageLink` is ONLY used for clickable link at status page
       statusPageLink: 'https://marknote.one',
-      // [OPTIONAL] `hideLatencyChart` will hide status page latency chart if set to true
       hideLatencyChart: true,
-      // [OPTIONAL] `expectedCodes` is an array of acceptable HTTP response codes, if not specified, default to 2xx
       expectedCodes: [200],
-      // [OPTIONAL] `timeout` in millisecond, if not specified, default to 10000
       timeout: 10000,
-      // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
       responseKeyword: 'Online!',
     },
     {
-      // `id` should be unique, history will be kept if the `id` remains constant
       id: 'clipit-one',
-      // `name` is used at status page and callback message
       name: 'ClipIt.one',
-      // `method` should be a valid HTTP Method
       method: 'GET',
-      // `target` is a valid URL
       target: 'https://clipit.one/api/online',
-      // [OPTIONAL] `statusPageLink` is ONLY used for clickable link at status page
       statusPageLink: 'https://clipit.one',
-      // [OPTIONAL] `hideLatencyChart` will hide status page latency chart if set to true
       hideLatencyChart: true,
-      // [OPTIONAL] `expectedCodes` is an array of acceptable HTTP response codes, if not specified, default to 2xx
       expectedCodes: [200],
-      // [OPTIONAL] `timeout` in millisecond, if not specified, default to 10000
       timeout: 10000,
-      // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
       responseKeyword: 'Online!',
     },
   ],
