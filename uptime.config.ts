@@ -64,7 +64,7 @@ const workerConfig: WorkerConfig = {
       statusPageLink: 'https://api.resumly.pro',
       hideLatencyChart: true,
       expectedCodes: [200],
-      timeout: 10000,
+      timeout: 180000,
       responseKeyword: 'online',
     },
     {
