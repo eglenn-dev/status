@@ -58,15 +58,16 @@ export default function OverallStatus({
   })
 
   const now = new Date()
-  let filteredMaintenances: (Omit<MaintenanceConfig, 'monitors'> & { monitors?: MonitorTarget[] })[] =
-    maintenances
-      .filter((m) => now >= new Date(m.start) && (!m.end || now <= new Date(m.end)))
-      .map((maintenance) => ({
-        ...maintenance,
-        monitors: maintenance.monitors?.map(
-          (monitorId) => monitors.find((mon) => monitorId === mon.id)!
-        ),
-      }))
+  let filteredMaintenances: (Omit<MaintenanceConfig, 'monitors'> & {
+    monitors?: MonitorTarget[]
+  })[] = maintenances
+    .filter((m) => now >= new Date(m.start) && (!m.end || now <= new Date(m.end)))
+    .map((maintenance) => ({
+      ...maintenance,
+      monitors: maintenance.monitors?.map(
+        (monitorId) => monitors.find((mon) => monitorId === mon.id)!
+      ),
+    }))
 
   return (
     <Container size="md" mt="xl">
@@ -76,9 +77,9 @@ export default function OverallStatus({
       </Title>
       <Title mt="sm" style={{ textAlign: 'center', color: '#70778c' }} order={5}>
         Last updated on:{' '}
-        {`${new Date(state.lastUpdate * 1000).toLocaleString()} (${
-          currentTime - state.lastUpdate
-        } sec ago)`}
+        {`${new Date(state.lastUpdate * 1000).toLocaleString()} (${Math.floor(
+          (currentTime - state.lastUpdate) / 60
+        )} min ago)`}
       </Title>
 
       {filteredMaintenances.map((maintenance, idx) => (

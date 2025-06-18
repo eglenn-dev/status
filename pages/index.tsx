@@ -72,6 +72,7 @@ export default function Home({
           mb="xs"
           style={{
             textAlign: 'center',
+            margin: '30px auto',
           }}
         >
           Open-source monitoring and status page powered by{' '}
