@@ -48,39 +48,46 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={inter.className}>
-        <Header />
+      <main
+        className={inter.className}
+        style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+      >
+        <div style={{ flex: 1 }}>
+          <Header />
 
-        {state == undefined ? (
-          <Center>
-            <Text fw={700}>
-              Monitor State is not defined now, please check your worker&apos;s status and KV
-              binding!
-            </Text>
-          </Center>
-        ) : (
-          <div>
-            <OverallStatus state={state} monitors={monitors} maintenances={maintenances} />
-            <MonitorList monitors={monitors} state={state} />
-          </div>
-        )}
+          {state == undefined ? (
+            <Center>
+              <Text fw={700}>
+                Monitor State is not defined now, please check your worker&apos;s status and KV
+                binding!
+              </Text>
+            </Center>
+          ) : (
+            <div>
+              <OverallStatus state={state} monitors={monitors} maintenances={maintenances} />
+              <MonitorList monitors={monitors} state={state} />
+            </div>
+          )}
+        </div>
 
-        <Divider mt="lg" />
-        <Text
-          size="xs"
-          mt="xs"
-          mb="xs"
-          style={{
-            textAlign: 'center',
-            margin: '30px auto',
-          }}
-        >
-          Open-source monitoring and status page powered by{' '}
-          <a href="https://github.com/lyc8503/UptimeFlare" target="_blank">
-            Uptimeflare
-          </a>
-          .
-        </Text>
+        <div>
+          <Divider mt="lg" />
+          <Text
+            size="xs"
+            mt="xs"
+            mb="xs"
+            style={{
+              textAlign: 'center',
+              margin: '30px auto',
+            }}
+          >
+            Open-source monitoring and status page powered by{' '}
+            <a href="https://github.com/lyc8503/UptimeFlare" target="_blank">
+              Uptimeflare
+            </a>
+            .
+          </Text>
+        </div>
       </main>
     </>
   )
