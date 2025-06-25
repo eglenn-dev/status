@@ -82,7 +82,6 @@ export default function Home({
             </a>
             .
           </Text>
-          <Divider mt="lg" />
         </div>
       </main>
     </>
