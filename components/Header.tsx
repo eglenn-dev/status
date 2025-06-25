@@ -34,6 +34,12 @@ export default function Header() {
               gap: '4px',
             }}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/favicon.ico"
+              alt="Ethan Glenn Logo"
+              style={{ width: '24px', height: '24px', marginRight: '8px' }}
+            />
             Ethan Glenn
           </a>
         </div>
