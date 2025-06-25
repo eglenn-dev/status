@@ -73,20 +73,26 @@ export default function Home({
         <div>
           <Divider mt="lg" />
           <Text
-            size="xs"
+            size="sm"
             mt="xs"
             mb="xs"
             style={{
               textAlign: 'center',
               margin: '30px auto',
+              color: 'white',
             }}
           >
             Open-source monitoring and status page powered by{' '}
-            <a href="https://github.com/lyc8503/UptimeFlare" target="_blank">
+            <a
+              href="https://github.com/lyc8503/UptimeFlare"
+              target="_blank"
+              style={{ color: '#60a5fa' }}
+            >
               Uptimeflare
             </a>
             .
           </Text>
+          <Divider mt="lg" />
         </div>
       </main>
     </>
