@@ -9,7 +9,7 @@ export default function Header() {
       <a
         key={link.label}
         href={link.link}
-        target="_blank"
+        target={link.link.startsWith('http') ? '_blank' : undefined}
         className={classes.link}
         data-active={link.highlight}
       >
