@@ -9,9 +9,9 @@ export default function Header() {
       <a
         key={link.label}
         href={link.link}
-        target={link.link.startsWith('http') ? '_blank' : undefined}
         className={classes.link}
         data-active={link.highlight}
+        rel="noreferrer noopener"
       >
         {link.label}
       </a>
@@ -24,6 +24,7 @@ export default function Header() {
         <div>
           <a
             href="https://ethanglenn.dev"
+            rel="noreferrer noopener"
             style={{
               textDecoration: 'none',
               color: 'white',
