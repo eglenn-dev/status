@@ -12,8 +12,8 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    '🌐 Public Websites': ['personal-site', 'resumly-frontend', 'marknote-one', 'clipit-one'],
-    '⚙️ Backend APIs': ['resumly-backend'],
+    '🌐 Web Apps': ['personal-site', 'resumly-frontend', 'marknote-one', 'clipit-one'],
+    '⚙️ APIs': ['resumly-backend'],
   },
 }
 
@@ -64,7 +64,7 @@ const workerConfig: WorkerConfig = {
       statusPageLink: 'https://api.resumly.pro',
       hideLatencyChart: true,
       expectedCodes: [200],
-      timeout: 180000,
+      timeout: 360000,
       responseKeyword: 'online',
     },
     {
