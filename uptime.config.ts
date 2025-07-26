@@ -13,7 +13,7 @@ const pageConfig: PageConfig = {
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
     '🌐 Web Apps': ['resumly-frontend', 'marknote-one', 'clipit-one'],
-    '⚙️ APIs': ['resumly-backend', 'bible-search'],
+    '⚙️ APIs': ['bible-search'],
   },
 }
 
@@ -55,17 +55,6 @@ const workerConfig: WorkerConfig = {
       expectedCodes: [200],
       timeout: 10000,
       responseKeyword: 'Online!',
-    },
-    {
-      id: 'resumly-backend',
-      name: 'Resumly.pro API',
-      method: 'GET',
-      target: 'https://api.resumly.pro/online',
-      statusPageLink: 'https://api.resumly.pro',
-      hideLatencyChart: true,
-      expectedCodes: [200],
-      timeout: 360000,
-      responseKeyword: 'online',
     },
     {
       id: 'marknote-one',
