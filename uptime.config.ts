@@ -13,7 +13,6 @@ const pageConfig: PageConfig = {
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
     '🌐 Web Apps': ['resumly-frontend', 'marknote-one', 'clipit-one'],
-    '⚙️ APIs': ['bible-search'],
   },
 }
 
@@ -73,17 +72,6 @@ const workerConfig: WorkerConfig = {
       method: 'GET',
       target: 'https://clipit.one/api/online',
       statusPageLink: 'https://clipit.one',
-      hideLatencyChart: true,
-      expectedCodes: [200],
-      timeout: 10000,
-      responseKeyword: 'Online!',
-    },
-    {
-      id: 'bible-search',
-      name: 'Bible Search API',
-      method: 'GET',
-      target: 'https://api.bible.eglenn.dev/',
-      statusPageLink: 'https://bible.eglenn.dev',
       hideLatencyChart: true,
       expectedCodes: [200],
       timeout: 10000,
