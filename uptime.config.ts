@@ -12,7 +12,7 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    '🌐 Web Apps': ['resumly', 'marknote-one', 'clipit-one'],
+    '🌐 Web Apps': ['resumly-frontend', 'marknote-one', 'clipit-one'],
   },
 }
 
@@ -45,7 +45,7 @@ const workerConfig: WorkerConfig = {
     //   responseKeyword: 'Online!',
     // },
     {
-      id: 'resumly',
+      id: 'resumly-frontend',
       name: 'Resumly.pro',
       method: 'GET',
       target: 'https://api.resumly.pro/online',
