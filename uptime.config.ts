@@ -12,8 +12,7 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    // '🌐 Web Apps': ['resumly-frontend', 'olin-help', 'marknote-one', 'clipit-one'],
-    '🌐 Web Apps': ['olin-help', 'marknote-one', 'clipit-one'],
+    '🌐 Web Apps': ['resumly-frontend', 'olin-help', 'marknote-one', 'clipit-one'],
   },
 }
 
@@ -45,17 +44,17 @@ const workerConfig: WorkerConfig = {
     //   // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
     //   responseKeyword: 'Online!',
     // },
-    // {
-    //   id: 'resumly-frontend',
-    //   name: 'Resumly.pro',
-    //   method: 'GET',
-    //   target: 'https://api.resumly.pro/online',
-    //   statusPageLink: 'https://resumly.pro',
-    //   hideLatencyChart: true,
-    //   expectedCodes: [200],
-    //   timeout: 10000,
-    //   responseKeyword: 'online',
-    // },
+    {
+      id: 'resumly-frontend',
+      name: 'Resumly.pro',
+      method: 'GET',
+      target: 'https://api.resumly.pro/online',
+      statusPageLink: 'https://resumly.pro',
+      hideLatencyChart: true,
+      expectedCodes: [200],
+      timeout: 10000,
+      responseKeyword: 'online',
+    },
     {
       id: 'olin-help',
       name: 'Olin.help',
