@@ -56,6 +56,17 @@ const workerConfig: WorkerConfig = {
       responseKeyword: 'online',
     },
     {
+      id: 'olin-help',
+      name: 'Olin.help',
+      method: 'GET',
+      target: 'https://olin.help/api/health',
+      statusPageLink: 'https://olin.help',
+      hideLatencyChart: true,
+      expectedCodes: [200],
+      timeout: 10000,
+      responseKeyword: 'Online!',
+    },
+    {
       id: 'marknote-one',
       name: 'MarkNote.one',
       method: 'GET',
