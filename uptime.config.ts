@@ -125,11 +125,11 @@ const workerConfig: WorkerConfig = {
 const maintenances: MaintenanceConfig[] = [
   {
     // [Optional] Monitor IDs to be affected by this maintenance
-    // monitors: ['resumly-frontend'],
+    monitors: ['resumly-frontend'],
     // [Optional] default to "Scheduled Maintenance" if not specified
     title: 'Monthly Maintenance',
     // Description of the maintenance, will be shown at status page
-    body: 'This is a test maintenance. Services may be intermittently unavailable during this period.',
+    body: 'Resumly.pro will undergo an outage due to usage limits. We apologize for any inconvenience caused.',
     // Start time of the maintenance, in UNIX timestamp or ISO 8601 format
     start: '2025-10-30T00:00:00+08:00',
     // [Optional] end time of the maintenance, in UNIX timestamp or ISO 8601 format
