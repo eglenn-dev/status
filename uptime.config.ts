@@ -131,10 +131,10 @@ const maintenances: MaintenanceConfig[] = [
     // Description of the maintenance, will be shown at status page
     body: 'Resumly.pro will undergo an outage due to usage limits. We apologize for any inconvenience caused.',
     // Start time of the maintenance, in UNIX timestamp or ISO 8601 format
-    start: '2025-10-30T00:00:00+08:00',
+    start: '2025-11-29T00:00:00+08:00',
     // [Optional] end time of the maintenance, in UNIX timestamp or ISO 8601 format
     // if not specified, the maintenance will be considered as on-going
-    end: '2025-11-02T00:00:00+08:00',
+    end: '2025-12-02T00:00:00+08:00',
     // [Optional] color of the maintenance alert at status page, default to "yellow"
     color: 'blue',
   },
