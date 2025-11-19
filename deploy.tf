@@ -38,7 +38,7 @@ resource "cloudflare_worker_cron_trigger" "uptimeflare_worker_cron" {
   account_id  = var.CLOUDFLARE_ACCOUNT_ID
   script_name = cloudflare_worker_script.uptimeflare.name
   schedules = [
-    "*/13 * * * *", # every 13 minutes, you can reduce the KV write by increasing the worker settings of `kvWriteCooldownMinutes`
+    "0 * * * *", # every hour at minute 0
   ]
 }
 
