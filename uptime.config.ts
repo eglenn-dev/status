@@ -123,21 +123,21 @@ const workerConfig: WorkerConfig = {
 // Of course, you can leave it empty if you don't need this feature
 // const maintenances: MaintenanceConfig[] = []
 const maintenances: MaintenanceConfig[] = [
-  {
-    // [Optional] Monitor IDs to be affected by this maintenance
-    monitors: ['resumly-frontend'],
-    // [Optional] default to "Scheduled Maintenance" if not specified
-    title: 'Monthly Maintenance',
-    // Description of the maintenance, will be shown at status page
-    body: 'Resumly.pro will undergo an outage due to usage limits. We apologize for any inconvenience caused.',
-    // Start time of the maintenance, in UNIX timestamp or ISO 8601 format
-    start: '2025-11-29T00:00:00+08:00',
-    // [Optional] end time of the maintenance, in UNIX timestamp or ISO 8601 format
-    // if not specified, the maintenance will be considered as on-going
-    end: '2025-12-02T00:00:00+08:00',
-    // [Optional] color of the maintenance alert at status page, default to "yellow"
-    color: 'blue',
-  },
+  // {
+  //   // [Optional] Monitor IDs to be affected by this maintenance
+  //   monitors: ['resumly-frontend'],
+  //   // [Optional] default to "Scheduled Maintenance" if not specified
+  //   title: 'Monthly Maintenance',
+  //   // Description of the maintenance, will be shown at status page
+  //   body: 'Resumly.pro will undergo an outage due to usage limits. We apologize for any inconvenience caused.',
+  //   // Start time of the maintenance, in UNIX timestamp or ISO 8601 format
+  //   start: '2025-11-29T00:00:00+08:00',
+  //   // [Optional] end time of the maintenance, in UNIX timestamp or ISO 8601 format
+  //   // if not specified, the maintenance will be considered as on-going
+  //   end: '2025-12-02T00:00:00+08:00',
+  //   // [Optional] color of the maintenance alert at status page, default to "yellow"
+  //   color: 'blue',
+  // },
 ]
 
 // Don't forget this, otherwise compilation fails.
