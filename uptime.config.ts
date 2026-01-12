@@ -12,7 +12,7 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    '🌐 Web Apps': ['resumly-frontend', 'olin-help', 'marknote-one', 'clipit-one'],
+    '🌐 Web Apps': ['resumly-frontend', 'olin-help', 'clipit-one'],
   },
 }
 
@@ -65,17 +65,6 @@ const workerConfig: WorkerConfig = {
       expectedCodes: [200],
       timeout: 10000,
       responseKeyword: 'Ace Your Next Interview with AI',
-    },
-    {
-      id: 'marknote-one',
-      name: 'MarkNote.one',
-      method: 'GET',
-      target: 'https://marknote.one/api/online',
-      statusPageLink: 'https://marknote.one',
-      hideLatencyChart: true,
-      expectedCodes: [200],
-      timeout: 10000,
-      responseKeyword: 'Online!',
     },
     {
       id: 'clipit-one',
