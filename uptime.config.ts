@@ -12,7 +12,7 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    '🌐 Web Apps': ['resumly-frontend', 'olin-help', 'clipit-one'],
+    '🌐 Web Apps': ['resumly-frontend', 'olin-help'],
   },
 }
 
@@ -65,17 +65,6 @@ const workerConfig: WorkerConfig = {
       expectedCodes: [200],
       timeout: 10000,
       responseKeyword: 'Ace Your Next Interview with AI',
-    },
-    {
-      id: 'clipit-one',
-      name: 'ClipIt.one',
-      method: 'GET',
-      target: 'https://clipit.one/api/online',
-      statusPageLink: 'https://clipit.one',
-      hideLatencyChart: true,
-      expectedCodes: [200],
-      timeout: 10000,
-      responseKeyword: 'Online!',
     },
   ],
   notification: {},
