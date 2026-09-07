@@ -12,7 +12,7 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    '🌐 Web Apps': ['resumly-frontend', 'olin-help'],
+    '🌐 Web Apps': ['gospel-help'],
   },
 }
 
@@ -45,26 +45,15 @@ const workerConfig: WorkerConfig = {
     //   responseKeyword: 'Online!',
     // },
     {
-      id: 'resumly-frontend',
-      name: 'Resumly.pro',
+      id: 'gospel-help',
+      name: 'Gospel Help',
       method: 'GET',
-      target: 'https://resumly.pro',
-      statusPageLink: 'https://resumly.pro',
+      target: 'https://api.gospel.help/',
+      statusPageLink: 'https://gospel.help',
       hideLatencyChart: true,
       expectedCodes: [200],
       timeout: 10000,
-      responseKeyword: 'Get Started',
-    },
-    {
-      id: 'olin-help',
-      name: 'Olin.help',
-      method: 'GET',
-      target: 'https://olin.help/',
-      statusPageLink: 'https://olin.help',
-      hideLatencyChart: true,
-      expectedCodes: [200],
-      timeout: 10000,
-      responseKeyword: 'Ace Your Next Interview with AI',
+      responseKeyword: 'Online!',
     },
   ],
   notification: {},

@@ -38,7 +38,7 @@ resource "cloudflare_worker_cron_trigger" "uptimeflare_worker_cron" {
   account_id  = var.CLOUDFLARE_ACCOUNT_ID
   script_name = cloudflare_worker_script.uptimeflare.name
   schedules = [
-    "0 * * * *", # every hour at minute 0
+    "*/10 * * * *", # every 10 minutes
   ]
 }
 
