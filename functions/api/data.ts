@@ -18,6 +18,9 @@ export const onRequest: PagesFunction<Env> = async ({ env }) => {
   let monitors: any = {}
 
   for (let monitor of workerConfig.monitors) {
+    // Not checked yet, e.g. a new monitor waiting for its first check window
+    if (!state.incident[monitor.id] || !state.latency[monitor.id]?.recent.length) continue
+
     const isUp = state.incident[monitor.id].slice(-1)[0].end !== undefined
     monitors[monitor.id] = {
       up: isUp,

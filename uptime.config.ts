@@ -43,6 +43,10 @@ const workerConfig: WorkerConfig = {
     //   timeout: 10000,
     //   // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
     //   responseKeyword: 'Online!',
+    //   // [OPTIONAL] only check during this time of day (24-hour "HH:mm", end is exclusive).
+    //   // Outside the window the monitor is not checked and keeps its last known status.
+    //   // `timeZone` is an IANA name: 'America/Denver' follows MDT/MST, 'UTC' (default) is fixed.
+    //   checkWindow: { start: '09:00', end: '12:00', timeZone: 'America/Denver' },
     // },
     {
       id: 'gospel-help',
@@ -54,6 +58,7 @@ const workerConfig: WorkerConfig = {
       expectedCodes: [200],
       timeout: 10000,
       responseKeyword: 'Online!',
+      checkWindow: { start: '09:00', end: '12:00', timeZone: 'America/Denver' },
     },
   ],
   notification: {},

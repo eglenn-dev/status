@@ -37,6 +37,15 @@ export type MonitorTarget = {
   responseForbiddenKeyword?: string
   checkProxy?: string
   checkProxyFallback?: boolean
+  checkWindow?: CheckWindow
+}
+
+export type CheckWindow = {
+  // 24-hour "HH:mm", start is inclusive and end is exclusive. If start > end the window crosses midnight.
+  start: string
+  end: string
+  // IANA time zone, e.g. 'America/Denver' or 'UTC'. Defaults to 'UTC'.
+  timeZone?: string
 }
 
 export type WorkerConfig = {

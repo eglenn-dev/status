@@ -1,3 +1,5 @@
+import { CheckWindow } from '../../types/config'
+
 async function getWorkerLocation() {
   const res = await fetch('https://cloudflare.com/cdn-cgi/trace')
   const text = await res.text()
@@ -110,7 +112,36 @@ async function notifyWithApprise(
   }
 }
 
+function parseTimeOfDay(time: string): number {
+  const match = /^(\d{1,2}):(\d{2})$/.exec(time)
+  const minutes = match ? Number(match[1]) * 60 + Number(match[2]) : NaN
+  if (!match || Number(match[2]) > 59 || minutes > 24 * 60) {
+    throw new Error(`Invalid checkWindow time "${time}", expected "HH:mm"`)
+  }
+  return minutes
+}
+
+// Whether `date` falls inside the monitor's daily check window. Monitors without a window are always checked.
+function isInCheckWindow(window: CheckWindow | undefined, date: Date): boolean {
+  if (!window) return true
+
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: window.timeZone ?? 'UTC',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  }).formatToParts(date)
+  const hour = Number(parts.find((p) => p.type === 'hour')!.value)
+  const minute = Number(parts.find((p) => p.type === 'minute')!.value)
+  const now = hour * 60 + minute
+
+  const start = parseTimeOfDay(window.start)
+  const end = parseTimeOfDay(window.end)
+  return start <= end ? now >= start && now < end : now >= start || now < end
+}
+
 export {
+  isInCheckWindow,
   getWorkerLocation,
   fetchTimeout,
   withTimeout,
