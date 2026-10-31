@@ -84,7 +84,7 @@ const workerConfig: WorkerConfig = {
 const maintenances: MaintenanceConfig[] = [
   {
     // [Optional] Monitor IDs to be affected by this maintenance
-    monitors: ['gospel-help'],
+    monitors: ['gospel-help-app', 'gospel-help-api'],
     // [Optional] default to "Scheduled Maintenance" if not specified
     title: 'Monthly Maintenance',
     // Description of the maintenance, will be shown at status page
