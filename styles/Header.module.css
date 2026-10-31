@@ -1,33 +1,69 @@
 .header {
-  height: rem(56px);
-  margin-bottom: rem(120px);
-  background-color: var(--mantine-color-body);
-  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: color-mix(in srgb, var(--mantine-color-body) 60%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: rem(1px) solid var(--mantine-color-default-border);
 }
 
 .inner {
-  height: rem(56px);
+  max-width: rem(1280px);
+  height: rem(64px);
+  margin: 0 auto;
+  padding: 0 rem(16px);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
+
+  @media (min-width: $mantine-breakpoint-xs) {
+    padding: 0 rem(24px);
+  }
+
+  @media (min-width: $mantine-breakpoint-md) {
+    padding: 0 rem(32px);
+  }
+}
+
+.links {
+  display: flex;
+  gap: rem(8px);
+
+  @media (min-width: $mantine-breakpoint-xs) {
+    gap: rem(16px);
+  }
 }
 
 .link {
-  display: block;
-  line-height: 1;
-  padding: rem(8px) rem(12px);
-  border-radius: var(--mantine-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  padding: rem(4px) rem(4px) 0;
+  border-bottom: rem(2px) solid transparent;
   text-decoration: none;
-  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+  color: var(--mantine-color-dimmed);
   font-size: var(--mantine-font-size-sm);
   font-weight: 500;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease;
 
-  @mixin hover {
-    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+  &:hover {
+    color: var(--mantine-color-text);
+    border-color: var(--mantine-color-gray-3);
   }
 
-  [data-mantine-color-scheme] &[data-active] {
-    background-color: var(--mantine-color-blue-filled);
-    color: var(--mantine-color-white);
+  &[data-active] {
+    color: color-mix(in oklab, var(--mantine-primary-color-filled), white 15%);
+    border-color: color-mix(in oklab, var(--mantine-primary-color-filled), white 15%);
+  }
+}
+
+.themeToggle {
+  align-self: center;
+  color: var(--mantine-color-text);
+  transition: transform 150ms ease;
+
+  &:hover {
+    transform: scale(1.1);
   }
 }

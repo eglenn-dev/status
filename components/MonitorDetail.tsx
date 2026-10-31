@@ -64,12 +64,17 @@ export default function MonitorDetail({
 
   // Conditionally render monitor name with or without hyperlink based on monitor.url presence
   const monitorNameElement = (
-    <Text mt="sm" fw={700} style={{ display: 'inline-flex', alignItems: 'center' }}>
+    <Text mt="sm" fw={600} style={{ display: 'inline-flex', alignItems: 'center' }}>
       {monitor.statusPageLink ? (
         <a
           href={monitor.statusPageLink}
           target="_blank"
-          style={{ display: 'inline-flex', alignItems: 'center', color: 'inherit' }}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            color: 'inherit',
+            textDecoration: 'none',
+          }}
         >
           {statusIcon} {monitor.name}
         </a>
@@ -90,7 +95,7 @@ export default function MonitorDetail({
           monitorNameElement
         )}
 
-        <Text mt="sm" fw={700} style={{ display: 'inline', color: getColor(uptimePercent, true) }}>
+        <Text mt="sm" fw={600} style={{ display: 'inline', color: getColor(uptimePercent, true) }}>
           Overall: {uptimePercent}%
         </Text>
       </div>

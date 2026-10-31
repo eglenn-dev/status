@@ -7,7 +7,7 @@ function getColor(percent: number | string, darker: boolean): string {
   } else if (percent >= 95) {
     return '#f29030'
   } else if (Number.isNaN(percent)) {
-    return 'gray'
+    return 'var(--app-empty-bar)'
   } else {
     return '#df484a'
   }
