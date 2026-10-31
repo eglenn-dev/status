@@ -58,7 +58,7 @@ const workerConfig: WorkerConfig = {
       expectedCodes: [200],
       timeout: 10000,
       responseKeyword: 'Online!',
-      checkWindow: { start: '09:00', end: '12:00', timeZone: 'America/Denver' },
+      checkWindow: { start: '09:00', end: '10:00', timeZone: 'America/Denver' },
     },
   ],
   notification: {},
