@@ -13,7 +13,7 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    'Gospel Help': ['gospel-help'],
+    'Gospel Help': ['gospel-help-app', 'gospel-help-api'],
     // 'Gospel Help': ['gospel-help-app', 'gospel-help-api'],
   },
 }
@@ -25,21 +25,21 @@ const workerConfig: WorkerConfig = {
   // passwordProtection: 'username:password',
   // Define all your monitors here
   monitors: [
-    // {
-    //   id: 'gospel-help-app',
-    //   name: 'Gospel Help App',
-    //   method: 'GET',
-    //   target: 'https://gospel.help/',
-    //   statusPageLink: 'https://gospel.help',
-    //   hideLatencyChart: true,
-    //   expectedCodes: [200],
-    //   timeout: 10000,
-    //   responseKeyword: 'Gospel Help',
-    //   checkWindow: { start: '09:00', end: '10:00', timeZone: 'America/Denver' },
-    // },
     {
-      id: 'gospel-help',
-      name: 'Gospel Help',
+      id: 'gospel-help-app',
+      name: 'Gospel Help App',
+      method: 'GET',
+      target: 'https://gospel.help/',
+      statusPageLink: 'https://gospel.help',
+      hideLatencyChart: true,
+      expectedCodes: [200],
+      timeout: 10000,
+      responseKeyword: 'Gospel Help',
+      checkWindow: { start: '09:00', end: '10:00', timeZone: 'America/Denver' },
+    },
+    {
+      id: 'gospel-help-api',
+      name: 'Gospel Help API',
       method: 'GET',
       target: 'https://api.gospel.help/',
       statusPageLink: 'https://gospel.help',
@@ -84,21 +84,21 @@ const workerConfig: WorkerConfig = {
 // Of course, you can leave it empty if you don't need this feature
 // const maintenances: MaintenanceConfig[] = []
 const maintenances: MaintenanceConfig[] = [
-  {
-    // [Optional] Monitor IDs to be affected by this maintenance
-    monitors: ['gospel-help'],
-    // [Optional] default to "Scheduled Maintenance" if not specified
-    title: 'Monthly Maintenance',
-    // Description of the maintenance, will be shown at status page
-    body: 'Gospel Help will undergo an outage due to usage limits. We apologize for any inconvenience caused.',
-    // Start time of the maintenance, in UNIX timestamp or ISO 8601 format
-    start: '2026-10-31T00:00:00+08:00',
-    // [Optional] end time of the maintenance, in UNIX timestamp or ISO 8601 format
-    // if not specified, the maintenance will be considered as on-going
-    end: '2026-11-02T00:00:00+08:00',
-    // [Optional] color of the maintenance alert at status page, default to "yellow"
-    color: 'blue',
-  },
+  // {
+  //   // [Optional] Monitor IDs to be affected by this maintenance
+  //   monitors: ['gospel-help'],
+  //   // [Optional] default to "Scheduled Maintenance" if not specified
+  //   title: 'Monthly Maintenance',
+  //   // Description of the maintenance, will be shown at status page
+  //   body: 'Gospel Help will undergo an outage due to usage limits. We apologize for any inconvenience caused.',
+  //   // Start time of the maintenance, in UNIX timestamp or ISO 8601 format
+  //   start: '2026-10-31T00:00:00+08:00',
+  //   // [Optional] end time of the maintenance, in UNIX timestamp or ISO 8601 format
+  //   // if not specified, the maintenance will be considered as on-going
+  //   end: '2026-11-02T00:00:00+08:00',
+  //   // [Optional] color of the maintenance alert at status page, default to "yellow"
+  //   color: 'blue',
+  // },
 ]
 
 // Don't forget this, otherwise compilation fails.
