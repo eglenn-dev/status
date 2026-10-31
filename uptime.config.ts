@@ -12,7 +12,8 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    'Gospel Help': ['gospel-help-app', 'gospel-help-api'],
+    'Gospel Help': ['gospel-help'],
+    // 'Gospel Help': ['gospel-help-app', 'gospel-help-api'],
   },
 }
 
@@ -23,21 +24,21 @@ const workerConfig: WorkerConfig = {
   // passwordProtection: 'username:password',
   // Define all your monitors here
   monitors: [
+    // {
+    //   id: 'gospel-help-app',
+    //   name: 'Gospel Help App',
+    //   method: 'GET',
+    //   target: 'https://gospel.help/',
+    //   statusPageLink: 'https://gospel.help',
+    //   hideLatencyChart: true,
+    //   expectedCodes: [200],
+    //   timeout: 10000,
+    //   responseKeyword: 'Gospel Help',
+    //   checkWindow: { start: '09:00', end: '10:00', timeZone: 'America/Denver' },
+    // },
     {
-      id: 'gospel-help-app',
-      name: 'Gospel Help App',
-      method: 'GET',
-      target: 'https://gospel.help/',
-      statusPageLink: 'https://gospel.help',
-      hideLatencyChart: true,
-      expectedCodes: [200],
-      timeout: 10000,
-      responseKeyword: 'Gospel Help',
-      checkWindow: { start: '09:00', end: '10:00', timeZone: 'America/Denver' },
-    },
-    {
-      id: 'gospel-help-api',
-      name: 'Gospel Help API',
+      id: 'gospel-help',
+      name: 'Gospel Help',
       method: 'GET',
       target: 'https://api.gospel.help/',
       statusPageLink: 'https://gospel.help',
@@ -84,7 +85,7 @@ const workerConfig: WorkerConfig = {
 const maintenances: MaintenanceConfig[] = [
   {
     // [Optional] Monitor IDs to be affected by this maintenance
-    monitors: ['gospel-help-app', 'gospel-help-api'],
+    monitors: ['gospel-help'],
     // [Optional] default to "Scheduled Maintenance" if not specified
     title: 'Monthly Maintenance',
     // Description of the maintenance, will be shown at status page
