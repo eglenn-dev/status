@@ -1,5 +1,5 @@
 import { MonitorState, MonitorTarget } from '@/types/config'
-import { Accordion, Card, Center, Text } from '@mantine/core'
+import { Accordion, Box, Card, Text, Title } from '@mantine/core'
 import MonitorDetail from './MonitorDetail'
 import { pageConfig } from '@/uptime.config'
 import { useEffect, useState } from 'react'
@@ -55,6 +55,17 @@ export default function MonitorList({
         multiple
         defaultValue={Object.keys(group)}
         variant="contained"
+        radius="xl"
+        styles={{
+          root: {
+            '--item-border-color': 'var(--mantine-color-default-border)',
+            '--item-filled-color': 'var(--app-card)',
+            borderRadius: 'var(--mantine-radius-xl)',
+            boxShadow: 'var(--mantine-shadow-xs)',
+          },
+          item: { backgroundColor: 'var(--app-card)' },
+          label: { fontWeight: 600 },
+        }}
         value={expandedGroups}
         onChange={(values) => setExpandedGroups(values)}
       >
@@ -72,6 +83,7 @@ export default function MonitorList({
                 <div>{groupName}</div>
                 <Text
                   fw={500}
+                  size="sm"
                   style={{
                     display: 'inline',
                     paddingRight: '5px',
@@ -88,11 +100,9 @@ export default function MonitorList({
                 .filter((monitor) => group[groupName].includes(monitor.id))
                 .sort((a, b) => group[groupName].indexOf(a.id) - group[groupName].indexOf(b.id))
                 .map((monitor) => (
-                  <div key={monitor.id}>
-                    <Card.Section ml="xs" mr="xs">
-                      <MonitorDetail monitor={monitor} state={state} />
-                    </Card.Section>
-                  </div>
+                  <Box key={monitor.id} px="xs" pb="xs">
+                    <MonitorDetail monitor={monitor} state={state} />
+                  </Box>
                 ))}
             </Accordion.Panel>
           </Accordion.Item>
@@ -111,19 +121,17 @@ export default function MonitorList({
   }
 
   return (
-    <Center>
-      <Card
-        shadow="sm"
-        padding="lg"
-        radius="md"
-        ml="md"
-        mr="md"
-        mt="xl"
-        withBorder={!groupedMonitor}
-        style={{ width: groupedMonitor ? '897px' : '865px' }}
-      >
-        {content}
-      </Card>
-    </Center>
+    <section style={{ marginTop: 48 }}>
+      <Title order={2} mb="lg">
+        Services
+      </Title>
+      {groupedMonitor ? (
+        content
+      ) : (
+        <Card shadow="xs" padding="lg" radius="xl" withBorder>
+          {content}
+        </Card>
+      )}
+    </section>
   )
 }

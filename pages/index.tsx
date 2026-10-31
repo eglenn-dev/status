@@ -1,16 +1,13 @@
 import Head from 'next/head'
-
-import { Inter } from 'next/font/google'
 import { MonitorState, MonitorTarget } from '@/types/config'
 import { maintenances, pageConfig } from '@/uptime.config'
 import OverallStatus from '@/components/OverallStatus'
 import Header from '@/components/Header'
 import MonitorList from '@/components/MonitorList'
-import { Center, Divider, Loader, Text } from '@mantine/core'
+import { Center, Container, Loader, Text } from '@mantine/core'
+import Footer from '@/components/Footer'
 import MonitorDetail from '@/components/MonitorDetail'
 import { useEffect, useState } from 'react'
-
-const inter = Inter({ subsets: ['latin'] })
 
 // State is written to KV by the worker and served by the `functions/api/state.ts` Pages Function
 async function fetchState(): Promise<MonitorState | undefined> {
@@ -63,46 +60,31 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={inter.className}>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Header />
 
-        {loading ? (
-          <Center mt="xl">
-            <Loader />
-          </Center>
-        ) : state == undefined ? (
-          <Center>
-            <Text fw={700}>
-              Monitor State is not defined now, please check your worker&apos;s status and KV
-              binding!
-            </Text>
-          </Center>
-        ) : (
-          <div>
-            <OverallStatus state={state} monitors={monitors} maintenances={maintenances} />
-            <MonitorList monitors={monitors} state={state} />
-          </div>
-        )}
+        <Container component="main" size={896} w="100%" py={48} style={{ flexGrow: 1 }}>
+          {loading ? (
+            <Center mt="xl">
+              <Loader />
+            </Center>
+          ) : state == undefined ? (
+            <Center>
+              <Text fw={700}>
+                Monitor State is not defined now, please check your worker&apos;s status and KV
+                binding!
+              </Text>
+            </Center>
+          ) : (
+            <>
+              <OverallStatus state={state} monitors={monitors} maintenances={maintenances} />
+              <MonitorList monitors={monitors} state={state} />
+            </>
+          )}
+        </Container>
 
-        <div>
-          <Divider mt="lg" />
-          <Text
-            size="xs"
-            mt="xs"
-            mb="xs"
-            style={{
-              textAlign: 'center',
-              margin: '30px auto',
-            }}
-          >
-            Open-source monitoring and status page powered by{' '}
-            <a href="https://github.com/lyc8503/UptimeFlare" target="_blank">
-              Uptimeflare
-            </a>
-            .
-          </Text>
-        </div>
-      </main>
+        <Footer />
+      </div>
     </>
   )
 }

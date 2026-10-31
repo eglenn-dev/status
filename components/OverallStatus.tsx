@@ -1,9 +1,8 @@
 import { MaintenanceConfig, MonitorTarget } from '@/types/config'
-import { Center, Container, Title } from '@mantine/core'
+import { Group, Text, Title } from '@mantine/core'
 import { IconCircleCheck, IconAlertCircle } from '@tabler/icons-react'
 import { useEffect, useState } from 'react'
 import MaintenanceAlert from './MaintenanceAlert'
-import { pageConfig } from '@/uptime.config'
 
 function useWindowVisibility() {
   const [isVisible, setIsVisible] = useState(true)
@@ -24,18 +23,15 @@ export default function OverallStatus({
   maintenances: MaintenanceConfig[]
   monitors: MonitorTarget[]
 }) {
-  let group = pageConfig.group
-  let groupedMonitor = (group && Object.keys(group).length > 0) || false
-
   let statusString = ''
-  let icon = <IconAlertCircle style={{ width: 64, height: 64, color: '#b91c1c' }} />
+  let icon = <IconAlertCircle style={{ width: 40, height: 40, flexShrink: 0, color: '#dc2626' }} />
   if (state.overallUp === 0 && state.overallDown === 0) {
     statusString = 'No data yet'
   } else if (state.overallUp === 0) {
     statusString = 'All systems not operational'
   } else if (state.overallDown === 0) {
     statusString = 'All systems operational'
-    icon = <IconCircleCheck style={{ width: 64, height: 64, color: '#059669' }} />
+    icon = <IconCircleCheck style={{ width: 40, height: 40, flexShrink: 0, color: '#059669' }} />
   } else {
     statusString = `Some systems not operational (${state.overallDown} out of ${
       state.overallUp + state.overallDown
@@ -70,25 +66,19 @@ export default function OverallStatus({
     }))
 
   return (
-    <Container size="md" mt="xl">
-      <Center>{icon}</Center>
-      <Title mt="sm" style={{ textAlign: 'center' }} order={1}>
-        {statusString}
-      </Title>
-      <Title mt="sm" style={{ textAlign: 'center', color: '#70778c' }} order={5}>
-        Last updated on:{' '}
-        {`${new Date(state.lastUpdate * 1000).toLocaleString()} (${Math.floor(
-          (currentTime - state.lastUpdate) / 60
-        )} min ago)`}
-      </Title>
+    <section>
+      <Group gap="sm" wrap="nowrap">
+        {icon}
+        <Title order={1}>{statusString}</Title>
+      </Group>
+      <Text c="dimmed" mt="sm">
+        Last updated {new Date(state.lastUpdate * 1000).toLocaleString()} (
+        {Math.floor((currentTime - state.lastUpdate) / 60)} min ago)
+      </Text>
 
       {filteredMaintenances.map((maintenance, idx) => (
-        <MaintenanceAlert
-          key={idx}
-          maintenance={maintenance}
-          style={{ maxWidth: groupedMonitor ? '897px' : '865px' }}
-        />
+        <MaintenanceAlert key={idx} maintenance={maintenance} />
       ))}
-    </Container>
+    </section>
   )
 }

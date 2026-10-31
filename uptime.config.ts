@@ -6,6 +6,7 @@ const pageConfig: PageConfig = {
   // Links shown at the header of your status page, could set `highlight` to `true`
   links: [
     { link: 'https://ethanglenn.dev', label: 'Home' },
+    { link: '/', label: 'Status', highlight: true },
     { link: 'https://github.com/eglenn-dev', label: 'GitHub' },
   ],
   // [OPTIONAL] Group your monitors
