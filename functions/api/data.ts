@@ -1,13 +1,8 @@
-import { workerConfig } from '@/uptime.config'
-import { MonitorState } from '@/types/config'
-import { NextRequest } from 'next/server'
+import { workerConfig } from '../../uptime.config'
+import { MonitorState } from '../../types/config'
 
-export const runtime = 'edge'
-
-export default async function handler(req: NextRequest): Promise<Response> {
-  const { UPTIMEFLARE_STATE } = process.env as unknown as {
-    UPTIMEFLARE_STATE: KVNamespace
-  }
+export const onRequest: PagesFunction<Env> = async ({ env }) => {
+  const { UPTIMEFLARE_STATE } = env
 
   const stateStr = await UPTIMEFLARE_STATE?.get('state')
   if (!stateStr) {
@@ -23,6 +18,9 @@ export default async function handler(req: NextRequest): Promise<Response> {
   let monitors: any = {}
 
   for (let monitor of workerConfig.monitors) {
+    // Not checked yet, e.g. a new monitor waiting for its first check window
+    if (!state.incident[monitor.id] || !state.latency[monitor.id]?.recent.length) continue
+
     const isUp = state.incident[monitor.id].slice(-1)[0].end !== undefined
     monitors[monitor.id] = {
       up: isUp,

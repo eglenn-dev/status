@@ -1,11 +1,9 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { workerConfig } from './uptime.config'
+import { workerConfig } from '../uptime.config'
 
-export async function middleware(request: NextRequest) {
+export const onRequest: PagesFunction = async (context) => {
   const passwordProtection = workerConfig.passwordProtection
   if (passwordProtection) {
-    const authHeader = request.headers.get('Authorization')
+    const authHeader = context.request.headers.get('Authorization')
     let authenticated = false
     const expected = 'Basic ' + btoa(passwordProtection)
 
@@ -18,10 +16,12 @@ export async function middleware(request: NextRequest) {
     }
 
     if (!authenticated) {
-      return NextResponse.json(
+      return Response.json(
         { code: 401, message: 'Not authenticated' },
         { status: 401, headers: { 'WWW-Authenticate': 'Basic' } }
       )
     }
   }
+
+  return context.next()
 }

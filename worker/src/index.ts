@@ -1,5 +1,10 @@
 import { workerConfig, maintenances } from '../../uptime.config'
-import { formatStatusChangeNotification, getWorkerLocation, notifyWithApprise } from './util'
+import {
+  formatStatusChangeNotification,
+  getWorkerLocation,
+  isInCheckWindow,
+  notifyWithApprise,
+} from './util'
 import { MonitorState, MonitorTarget } from '../../types/config'
 import { getStatus } from './monitor'
 import { DurableObject } from 'cloudflare:workers'
@@ -90,6 +95,20 @@ const Worker = {
     // Check each monitor
     // TODO: concurrent status check
     for (const monitor of workerConfig.monitors) {
+      let inCheckWindow = true
+      try {
+        inCheckWindow = isInCheckWindow(monitor.checkWindow, new Date(event.scheduledTime))
+      } catch (e) {
+        console.log(`Invalid checkWindow for ${monitor.name}, checking anyway: ${e}`)
+      }
+      if (!inCheckWindow) {
+        console.log(`Skipping ${monitor.name}, outside its check window`)
+        // Not checked, so keep counting its last known status
+        const lastIncident = state.incident[monitor.id]?.slice(-1)[0]
+        if (lastIncident) lastIncident.end === undefined ? state.overallDown++ : state.overallUp++
+        continue
+      }
+
       console.log(`[${workerLocation}] Checking ${monitor.name}...`)
 
       let monitorStatusChanged = false

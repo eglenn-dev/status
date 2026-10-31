@@ -1,8 +1,7 @@
 declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      UPTIMEFLARE_STATE: KVNamespace
-    }
+  // Bindings available to Pages Functions under `functions/`
+  interface Env {
+    UPTIMEFLARE_STATE: KVNamespace
   }
 }
 
