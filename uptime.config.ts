@@ -12,7 +12,7 @@ const pageConfig: PageConfig = {
   // If not specified, all monitors will be shown in a single list
   // If specified, monitors will be grouped and ordered, not-listed monitors will be invisble (but still monitored)
   group: {
-    '🌐 Web Apps': ['gospel-help'],
+    'Gospel Help': ['gospel-help-app', 'gospel-help-api'],
   },
 }
 
@@ -23,34 +23,21 @@ const workerConfig: WorkerConfig = {
   // passwordProtection: 'username:password',
   // Define all your monitors here
   monitors: [
-    // Example HTTP Monitor
-    // {
-    //   // `id` should be unique, history will be kept if the `id` remains constant
-    //   id: 'personal-site',
-    //   // `name` is used at status page and callback message
-    //   name: 'Personal Site',
-    //   // `method` should be a valid HTTP Method
-    //   method: 'GET',
-    //   // `target` is a valid URL
-    //   target: 'https://ethanglenn.dev/online',
-    //   // [OPTIONAL] `statusPageLink` is ONLY used for clickable link at status page
-    //   statusPageLink: 'https://ethanglenn.dev',
-    //   // [OPTIONAL] `hideLatencyChart` will hide status page latency chart if set to true
-    //   hideLatencyChart: true,
-    //   // [OPTIONAL] `expectedCodes` is an array of acceptable HTTP response codes, if not specified, default to 2xx
-    //   expectedCodes: [200],
-    //   // [OPTIONAL] `timeout` in millisecond, if not specified, default to 10000
-    //   timeout: 10000,
-    //   // [OPTIONAL] if specified, the response ust contains the keyword to be considered as operational.
-    //   responseKeyword: 'Online!',
-    //   // [OPTIONAL] only check during this time of day (24-hour "HH:mm", end is exclusive).
-    //   // Outside the window the monitor is not checked and keeps its last known status.
-    //   // `timeZone` is an IANA name: 'America/Denver' follows MDT/MST, 'UTC' (default) is fixed.
-    //   checkWindow: { start: '09:00', end: '12:00', timeZone: 'America/Denver' },
-    // },
     {
-      id: 'gospel-help',
-      name: 'Gospel Help',
+      id: 'gospel-help-app',
+      name: 'Gospel Help App',
+      method: 'GET',
+      target: 'https://gospel.help/',
+      statusPageLink: 'https://gospel.help',
+      hideLatencyChart: true,
+      expectedCodes: [200],
+      timeout: 10000,
+      responseKeyword: 'Gospel Help',
+      checkWindow: { start: '09:00', end: '10:00', timeZone: 'America/Denver' },
+    },
+    {
+      id: 'gospel-help-api',
+      name: 'Gospel Help API',
       method: 'GET',
       target: 'https://api.gospel.help/',
       statusPageLink: 'https://gospel.help',
@@ -103,10 +90,10 @@ const maintenances: MaintenanceConfig[] = [
     // Description of the maintenance, will be shown at status page
     body: 'Gospel Help will undergo an outage due to usage limits. We apologize for any inconvenience caused.',
     // Start time of the maintenance, in UNIX timestamp or ISO 8601 format
-    start: '2026-10-30T00:00:00+08:00',
+    start: '2026-10-31T00:00:00+08:00',
     // [Optional] end time of the maintenance, in UNIX timestamp or ISO 8601 format
     // if not specified, the maintenance will be considered as on-going
-    end: '2026-11-01T00:00:00+08:00',
+    end: '2026-11-02T00:00:00+08:00',
     // [Optional] color of the maintenance alert at status page, default to "yellow"
     color: 'blue',
   },
