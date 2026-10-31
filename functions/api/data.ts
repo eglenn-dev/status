@@ -1,13 +1,8 @@
-import { workerConfig } from '@/uptime.config'
-import { MonitorState } from '@/types/config'
-import { NextRequest } from 'next/server'
+import { workerConfig } from '../../uptime.config'
+import { MonitorState } from '../../types/config'
 
-export const runtime = 'edge'
-
-export default async function handler(req: NextRequest): Promise<Response> {
-  const { UPTIMEFLARE_STATE } = process.env as unknown as {
-    UPTIMEFLARE_STATE: KVNamespace
-  }
+export const onRequest: PagesFunction<Env> = async ({ env }) => {
+  const { UPTIMEFLARE_STATE } = env
 
   const stateStr = await UPTIMEFLARE_STATE?.get('state')
   if (!stateStr) {

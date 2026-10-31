@@ -2,34 +2,49 @@ import Head from 'next/head'
 
 import { Inter } from 'next/font/google'
 import { MonitorState, MonitorTarget } from '@/types/config'
-import { KVNamespace } from '@cloudflare/workers-types'
-import { maintenances, pageConfig, workerConfig } from '@/uptime.config'
+import { maintenances, pageConfig } from '@/uptime.config'
 import OverallStatus from '@/components/OverallStatus'
 import Header from '@/components/Header'
 import MonitorList from '@/components/MonitorList'
-import { Center, Divider, Text } from '@mantine/core'
+import { Center, Divider, Loader, Text } from '@mantine/core'
 import MonitorDetail from '@/components/MonitorDetail'
+import { useEffect, useState } from 'react'
 
-export const runtime = 'experimental-edge'
 const inter = Inter({ subsets: ['latin'] })
 
+// State is written to KV by the worker and served by the `functions/api/state.ts` Pages Function
+async function fetchState(): Promise<MonitorState | undefined> {
+  try {
+    const res = await fetch('/api/state', { cache: 'no-store' })
+    if (!res.ok) return undefined
+    return (await res.json()) as MonitorState
+  } catch (e) {
+    console.error('Failed to load monitor state', e)
+    return undefined
+  }
+}
+
 export default function Home({
-  state: stateStr,
   monitors,
 }: {
-  state: string
   monitors: MonitorTarget[]
   tooltip?: string
   statusPageLink?: string
 }) {
-  let state
-  if (stateStr !== undefined) {
-    state = JSON.parse(stateStr) as MonitorState
-  }
+  const [loading, setLoading] = useState(true)
+  const [state, setState] = useState<MonitorState | undefined>()
+
+  useEffect(() => {
+    fetchState().then((s) => {
+      setState(s)
+      setLoading(false)
+    })
+  }, [])
 
   // Specify monitorId in URL hash to view a specific monitor (can be used in iframe)
   const monitorId = window.location.hash.substring(1)
   if (monitorId) {
+    if (loading) return null
     const monitor = monitors.find((monitor) => monitor.id === monitorId)
     if (!monitor || !state) {
       return <Text fw={700}>Monitor with id {monitorId} not found!</Text>
@@ -51,7 +66,11 @@ export default function Home({
       <main className={inter.className}>
         <Header />
 
-        {state == undefined ? (
+        {loading ? (
+          <Center mt="xl">
+            <Loader />
+          </Center>
+        ) : state == undefined ? (
           <Center>
             <Text fw={700}>
               Monitor State is not defined now, please check your worker&apos;s status and KV
@@ -88,13 +107,9 @@ export default function Home({
   )
 }
 
-export async function getServerSideProps() {
-  const { UPTIMEFLARE_STATE } = process.env as unknown as {
-    UPTIMEFLARE_STATE: KVNamespace
-  }
-
-  // Read state as string from KV, to avoid hitting server-side cpu time limit
-  const state = (await UPTIMEFLARE_STATE?.get('state')) as unknown as MonitorState
+// Runs at build time only; workerConfig is never included in the client bundle
+export async function getStaticProps() {
+  const { workerConfig } = await import('@/uptime.config')
 
   // Only present these values to client
   const monitors = workerConfig.monitors.map((monitor) => {
@@ -110,5 +125,6 @@ export async function getServerSideProps() {
     }
   })
 
-  return { props: { state, monitors } }
+  // getStaticProps can't serialize `undefined`, so drop unset optional fields
+  return { props: { monitors: JSON.parse(JSON.stringify(monitors)) as MonitorTarget[] } }
 }
