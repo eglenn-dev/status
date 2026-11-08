@@ -57,7 +57,6 @@ export default function Home({
     <>
       <Head>
         <title>{pageConfig.title}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>

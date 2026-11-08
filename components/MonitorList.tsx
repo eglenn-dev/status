@@ -64,7 +64,12 @@ export default function MonitorList({
             boxShadow: 'var(--mantine-shadow-xs)',
           },
           item: { backgroundColor: 'var(--app-card)' },
-          label: { fontWeight: 600 },
+          label: {
+            fontFamily: 'var(--app-font-display)',
+            fontWeight: 600,
+            letterSpacing: '-0.025em',
+            color: 'var(--app-heading)',
+          },
         }}
         value={expandedGroups}
         onChange={(values) => setExpandedGroups(values)}
@@ -84,6 +89,7 @@ export default function MonitorList({
                 <Text
                   fw={500}
                   size="sm"
+                  ff="monospace"
                   style={{
                     display: 'inline',
                     paddingRight: '5px',
@@ -122,8 +128,12 @@ export default function MonitorList({
 
   return (
     <section style={{ marginTop: 48 }}>
-      <Title order={2} mb="lg">
+      <Title order={2} mb="lg" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         Services
+        <span
+          aria-hidden
+          style={{ height: 1, flexGrow: 1, backgroundColor: 'var(--mantine-color-default-border)' }}
+        />
       </Title>
       {groupedMonitor ? (
         content

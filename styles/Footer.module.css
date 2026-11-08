@@ -5,18 +5,18 @@
 .inner {
   max-width: rem(1280px);
   margin: 0 auto;
-  padding: rem(24px) rem(16px);
+  padding: rem(32px) rem(16px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: rem(16px);
 
-  @media (min-width: $mantine-breakpoint-xs) {
-    padding: rem(24px);
+  @media (min-width: 40em) {
+    padding: rem(32px) rem(24px);
   }
 
-  @media (min-width: $mantine-breakpoint-md) {
-    padding: rem(24px) rem(32px);
+  @media (min-width: 64em) {
+    padding: rem(32px);
   }
 }
 
@@ -29,17 +29,20 @@
 .social {
   display: flex;
   align-items: center;
-  gap: rem(8px);
+  gap: rem(4px);
 
   a {
     display: flex;
     padding: rem(8px);
-    border-radius: 9999px;
+    border-radius: var(--mantine-radius-md);
     color: var(--mantine-color-dimmed);
-    transition: color 300ms ease;
+    transition:
+      color 150ms ease,
+      background-color 150ms ease;
 
     &:hover {
-      color: var(--mantine-color-text);
+      color: var(--app-heading);
+      background-color: var(--app-muted);
     }
   }
 }

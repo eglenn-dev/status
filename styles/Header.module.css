@@ -2,68 +2,87 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: color-mix(in srgb, var(--mantine-color-body) 60%, transparent);
-  backdrop-filter: blur(8px);
+  background-color: color-mix(in srgb, var(--mantine-color-body) 90%, transparent);
+  backdrop-filter: blur(12px);
   border-bottom: rem(1px) solid var(--mantine-color-default-border);
+
+  @supports (backdrop-filter: blur(1px)) {
+    background-color: color-mix(in srgb, var(--mantine-color-body) 75%, transparent);
+  }
 }
 
 .inner {
   max-width: rem(1280px);
-  height: rem(64px);
+  height: rem(56px);
   margin: 0 auto;
   padding: 0 rem(16px);
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
 
-  @media (min-width: $mantine-breakpoint-xs) {
+  @media (min-width: 40em) {
     padding: 0 rem(24px);
   }
 
-  @media (min-width: $mantine-breakpoint-md) {
+  @media (min-width: 64em) {
     padding: 0 rem(32px);
   }
 }
 
 .links {
   display: flex;
-  gap: rem(8px);
+  align-items: center;
+  gap: rem(2px);
 
-  @media (min-width: $mantine-breakpoint-xs) {
-    gap: rem(16px);
+  @media (min-width: 40em) {
+    gap: rem(4px);
   }
 }
 
+/* Pill-style nav links with a filled active state */
 .link {
   display: inline-flex;
   align-items: center;
-  padding: rem(4px) rem(4px) 0;
-  border-bottom: rem(2px) solid transparent;
+  padding: rem(6px);
+  border-radius: var(--mantine-radius-md);
   text-decoration: none;
   color: var(--mantine-color-dimmed);
-  font-size: var(--mantine-font-size-sm);
-  font-weight: 500;
+  font-size: rem(13px);
+  font-weight: 600;
+  line-height: 1.5;
   transition:
-    color 200ms ease,
-    border-color 200ms ease;
+    color 150ms ease,
+    background-color 150ms ease;
+
+  @media (min-width: 40em) {
+    padding: rem(6px) rem(12px);
+  }
 
   &:hover {
-    color: var(--mantine-color-text);
-    border-color: var(--mantine-color-gray-3);
+    color: var(--app-heading);
+    background-color: color-mix(in srgb, var(--app-muted) 60%, transparent);
   }
 
   &[data-active] {
-    color: color-mix(in oklab, var(--mantine-primary-color-filled), white 15%);
-    border-color: color-mix(in oklab, var(--mantine-primary-color-filled), white 15%);
+    color: var(--app-heading);
+    background-color: var(--app-muted);
   }
 }
 
 .themeToggle {
-  align-self: center;
-  color: var(--mantine-color-text);
-  transition: transform 150ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: rem(36px);
+  height: rem(36px);
+  border-radius: var(--mantine-radius-lg);
+  color: var(--mantine-color-dimmed);
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
 
   &:hover {
-    transform: scale(1.1);
+    color: var(--app-heading);
+    background-color: var(--app-muted);
   }
 }

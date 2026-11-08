@@ -95,7 +95,13 @@ export default function MonitorDetail({
           monitorNameElement
         )}
 
-        <Text mt="sm" fw={600} style={{ display: 'inline', color: getColor(uptimePercent, true) }}>
+        <Text
+          mt="sm"
+          fw={600}
+          size="sm"
+          ff="monospace"
+          style={{ display: 'inline', alignSelf: 'center', color: getColor(uptimePercent, true) }}
+        >
           Overall: {uptimePercent}%
         </Text>
       </div>

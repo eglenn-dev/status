@@ -1,4 +1,4 @@
-import { ActionIcon, useComputedColorScheme, useMantineColorScheme } from '@mantine/core'
+import { UnstyledButton, useComputedColorScheme, useMantineColorScheme } from '@mantine/core'
 import { IconMoon, IconSun } from '@tabler/icons-react'
 import classes from '@/styles/Header.module.css'
 import { pageConfig } from '@/uptime.config'
@@ -8,16 +8,13 @@ function ThemeToggle() {
   const colorScheme = useComputedColorScheme('light')
 
   return (
-    <ActionIcon
-      variant="subtle"
-      color="gray"
-      size="lg"
+    <UnstyledButton
       aria-label="Toggle theme"
       className={classes.themeToggle}
       onClick={() => setColorScheme(colorScheme === 'dark' ? 'light' : 'dark')}
     >
-      {colorScheme === 'dark' ? <IconMoon size={22} /> : <IconSun size={22} />}
-    </ActionIcon>
+      {colorScheme === 'dark' ? <IconMoon size={20} /> : <IconSun size={20} />}
+    </UnstyledButton>
   )
 }
 
