@@ -1,6 +1,7 @@
 import '@mantine/core/styles.css'
+import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { Inter } from 'next/font/google'
+import { Bricolage_Grotesque, Inter, JetBrains_Mono } from 'next/font/google'
 import {
   CSSVariablesResolver,
   MantineProvider,
@@ -9,66 +10,76 @@ import {
 } from '@mantine/core'
 import NoSsr from '@/components/NoSsr'
 
+// Same type stack as ethanglenn.dev: Inter body, Bricolage Grotesque display, JetBrains Mono
 const inter = Inter({ subsets: ['latin'] })
+const bricolage = Bricolage_Grotesque({ subsets: ['latin'] })
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'] })
 
-// Mirrors the zinc + blue shadcn palette used on ethanglenn.dev
-const zinc = [
-  '#fafafa',
-  '#f4f4f5',
-  '#e4e4e7',
-  '#d4d4d8',
-  '#a1a1aa',
-  '#71717a',
-  '#52525b',
-  '#3f3f46',
-  '#27272a',
-  '#18181b',
+// Warm neutrals and the orange brand accent from ethanglenn.dev's globals.css,
+// converted from oklch to hex so Mantine can derive shades from them
+const warmGray = [
+  '#fcfaf6',
+  '#f6f3ee',
+  '#e6e2dc',
+  '#dfdad2',
+  '#a49d93',
+  '#686259',
+  '#4d473e',
+  '#373229',
+  '#201b13',
+  '#161109',
 ] as const
 
 const theme = createTheme({
   fontFamily: inter.style.fontFamily,
+  fontFamilyMonospace: jetbrainsMono.style.fontFamily,
   headings: {
-    fontFamily: inter.style.fontFamily,
+    fontFamily: bricolage.style.fontFamily,
     sizes: {
-      h1: { fontSize: '2.25rem', fontWeight: '700', lineHeight: '1.2' },
-      h2: { fontSize: '1.5rem', fontWeight: '600', lineHeight: '1.3' },
+      h1: {
+        fontSize: 'clamp(2rem, 1.4rem + 2vw, 2.75rem)',
+        fontWeight: '800',
+        lineHeight: '1.05',
+      },
+      h2: { fontSize: '1.25rem', fontWeight: '700', lineHeight: '1.3' },
     },
   },
-  primaryColor: 'blue',
-  primaryShade: { light: 7, dark: 8 },
+  primaryColor: 'brand',
+  primaryShade: { light: 6, dark: 5 },
   defaultRadius: 'md',
+  // Tailwind radii on ethanglenn.dev, derived from --radius: 0.625rem
   radius: {
-    xs: '0.2rem',
-    sm: '0.325rem',
-    md: '0.45rem',
-    lg: '0.8rem',
-    xl: '1.15rem',
+    xs: '0.25rem',
+    sm: '0.375rem',
+    md: '0.5rem',
+    lg: '0.625rem',
+    xl: '0.875rem',
   },
   colors: {
-    gray: [...zinc],
-    blue: [
-      '#eff6ff',
-      '#dbeafe',
-      '#bfdbfe',
-      '#93c5fd',
-      '#60a5fa',
-      '#3b82f6',
-      '#2563eb',
-      '#1d4ed8',
-      '#1e40af',
-      '#1e3a8a',
+    gray: [...warmGray],
+    brand: [
+      '#fff2e8',
+      '#ffe4cf',
+      '#ffccac',
+      '#ffaf82',
+      '#ff8f57',
+      '#fc701f',
+      '#ec5500',
+      '#cd4805',
+      '#a63c0c',
+      '#81300f',
     ],
     dark: [
-      '#fafafa',
-      '#d4d4d8',
-      '#a1a1aa',
-      '#71717a',
-      '#3f3f46',
-      '#27272a',
-      '#18181b',
-      '#09090b',
-      '#050506',
-      '#000000',
+      '#ece6d8',
+      '#c2bdb3',
+      '#a39e94',
+      '#636363',
+      '#333333',
+      '#1e1e1e',
+      '#131313',
+      '#0a0a0a',
+      '#060606',
+      '#020202',
     ],
   },
 })
@@ -76,24 +87,33 @@ const theme = createTheme({
 const cssVariablesResolver: CSSVariablesResolver = (theme) => {
   const base = v8CssVariablesResolver(theme)
   return {
-    variables: base.variables,
+    variables: {
+      ...base.variables,
+      '--app-font-display': bricolage.style.fontFamily,
+    },
     light: {
       ...base.light,
-      '--mantine-color-body': '#ffffff',
-      '--mantine-color-text': '#09090b',
-      '--mantine-color-dimmed': '#71717a',
-      '--mantine-color-default-border': '#e4e4e7',
+      '--mantine-color-body': '#fdfdfd',
+      '--mantine-color-text': '#1f1b16',
+      '--mantine-color-dimmed': '#696259',
+      '--mantine-color-default-border': '#e7e2da',
+      '--app-heading': '#171717',
       '--app-card': '#ffffff',
-      '--app-empty-bar': '#e4e4e7',
+      '--app-muted': '#f5f3f0',
+      '--app-empty-bar': '#dfdad1',
+      '--app-brand': '#ec5500',
     },
     dark: {
       ...base.dark,
-      '--mantine-color-body': '#09090b',
-      '--mantine-color-text': '#fafafa',
-      '--mantine-color-dimmed': '#a1a1aa',
-      '--mantine-color-default-border': 'rgba(255, 255, 255, 0.1)',
-      '--app-card': '#18181b',
-      '--app-empty-bar': '#3f3f46',
+      '--mantine-color-body': '#0a0a0a',
+      '--mantine-color-text': '#ece6d8',
+      '--mantine-color-dimmed': '#a49e91',
+      '--mantine-color-default-border': '#2b2b2b',
+      '--app-heading': '#fafafa',
+      '--app-card': '#131313',
+      '--app-muted': '#191919',
+      '--app-empty-bar': '#333333',
+      '--app-brand': '#fc701f',
     },
   }
 }
